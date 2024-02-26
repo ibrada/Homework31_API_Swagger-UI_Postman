@@ -4,9 +4,7 @@ import org.example.model.Faculty;
 import org.example.model.Student;
 import org.springframework.stereotype.Service;
 
-import java.util.Collection;
-import java.util.HashMap;
-import java.util.Map;
+import java.util.*;
 
 @Service
 public class FacultyService {
@@ -38,6 +36,16 @@ public class FacultyService {
 
     public Collection<Faculty> getAllFaculties() {
         return facultyMap.values();
+    }
+
+    public Collection<Faculty> getFilteredFacultiesByColor(String color) {
+        ArrayList<Faculty> result = new ArrayList<>();
+        for (Faculty faculty : facultyMap.values()) {
+            if (Objects.equals(faculty.getColor(), color)) {
+                result.add(faculty);
+            }
+        }
+        return result;
     }
 
 }

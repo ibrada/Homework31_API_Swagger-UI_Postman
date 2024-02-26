@@ -7,6 +7,7 @@ import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 
 import java.util.Collection;
+import java.util.Collections;
 
 @RestController
 @RequestMapping("student")
@@ -32,10 +33,13 @@ public class StudentController {
         return ResponseEntity.ok(studentService.getAllStudents());
     }
 
-    /*@GetMapping
-    public ResponseEntity<Collection<Student>> getFilteredStudentsByAge() {
-        return ResponseEntity.ok(studentService.getFilteredStudentsByAge());
-    }*/
+    @GetMapping
+    public ResponseEntity<Collection<Student>> getStudentsByAge(@RequestParam(required = false) int age) {
+        if (age > 0) {
+            return ResponseEntity.ok(studentService.getFilteredStudentsByAge(age));
+        }
+        return ResponseEntity.ok(Collections.emptyList());
+    }
 
     @PostMapping()
     public Student createStudent(@RequestBody Student student) {

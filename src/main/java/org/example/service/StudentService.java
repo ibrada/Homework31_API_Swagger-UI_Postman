@@ -3,6 +3,7 @@ package org.example.service;
 import org.example.model.Student;
 import org.springframework.stereotype.Service;
 
+import java.util.ArrayList;
 import java.util.Collection;
 import java.util.HashMap;
 import java.util.Map;
@@ -39,10 +40,13 @@ public class StudentService {
         return studentMap.values();
     }
 
-    /*public Collection<Student> getFilteredStudentsByAge(String age) {
-        if () {
-            return studentMap.values();
+    public Collection<Student> getFilteredStudentsByAge(int age) {
+        ArrayList<Student> result = new ArrayList<>();
+    for (Student student : studentMap.values()) {
+        if (student.getAge() == age) {
+            result.add(student);
         }
-        return null;
-    }*/
+    }
+    return result;
+    }
 }
