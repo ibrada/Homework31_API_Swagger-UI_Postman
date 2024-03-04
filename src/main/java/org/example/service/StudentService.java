@@ -26,7 +26,10 @@ public class StudentService {
 
     public Student editStudent(Student student) {
         if (studentMap.containsKey(student.getId())) {
-            studentMap.put(student.getId(), student);
+//            studentMap.put(student.getId(), student);
+            Student oldStudent = studentMap.get(student.getId());
+            oldStudent.setAge(student.getAge());
+            oldStudent.setName(student.getName());
             return student;
         }
         return null;
